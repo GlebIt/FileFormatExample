@@ -1,8 +1,114 @@
-<html>
-    <head>
-        <title>File format example</title>
-    </head>
-    <body>
-        <h1>Some text</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Макет Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .square {
+            width: 100%;
+            max-width: 100px;
+            aspect-ratio: 1 / 1;
+        }
+        .input-group input {
+            width: 60px; 
+            text-align: center;
+            flex-grow: 0; 
+        }
+        .input-group .form-control, .input-group-text {
+            width: 60px;
+            text-align: center;
+            padding: 2px;
+            flex-grow: 0;
+        }
+        .input-group-text {
+          text-align: center;  
+        }
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 300px;
+        }
+        .grid-container .square {
+            flex: 1 1 calc(100% / 3);
+        }
+        .gap{
+            width: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-4">
+        <div class="text-center mt-5">
+            <h2>Пример изображения в формате .hui</h2>
+            <p>Ниже приведен интерактивные пример нашего формата. В таблице приведены значения каждого байта файла</p>
+            <p>
+                Первые два байта <strong>0 3</strong> размер 3 пикселя по вертикали, далее <b>0</b> пустой байт,<br>
+                далее два байта <b>0 2</b> размер 2 пикселя по горизонтали, далее <b>0</b> пустой байт. Далее идут байты хрянаящие значения RGB для каждого пикселя.<br>
+                Значения RGB каналов можно изменять чтобы увидеть как это меняет изображение.
+                Ссылка на пост: <a href="#" class="link-primary">Создадим свой формат файла для изображений?</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="container p-4 border rounded">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="input-group">               
+                    <span class="input-group-text">0</span>
+                    <span class="input-group-text">3</span>
+                    <span class="gap"></span>  
+                    <span class="input-group-text">0</span>
+                    <span class="gap"></span>  
+                    <span class="input-group-text">0</span>
+                    <span class="input-group-text">2</span>
+                    <span class="gap"></span>  
+                    <span class="input-group-text">0</span>  
+                    <span class="gap"></span>  
+                    <input type="number" class="form-control" min="0" max="255" value="47" data-pixel-id="10" data-chanel="R" onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="158" data-pixel-id="10" data-chanel="G" onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="68" data-pixel-id="10" data-chanel="B" onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <span class="gap"></span>  
+                    <input type="number" class="form-control" min="0" max="255" value="47" data-pixel-id="11" data-chanel="R"  onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="158" data-pixel-id="11" data-chanel="G"  onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="68" data-pixel-id="11" data-chanel="B"  onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <span class="gap"></span>  
+                    <input type="number" class="form-control" min="0" max="255" value="25" data-pixel-id="12" data-chanel="R"  onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="113" data-pixel-id="12" data-chanel="G" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="194" data-pixel-id="12" data-chanel="B"  onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <span class="gap"></span>  
+                    <input type="number" class="form-control" min="0" max="255" value="224" data-pixel-id="20" data-chanel="R" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="49" data-pixel-id="20" data-chanel="G" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="49" data-pixel-id="20" data-chanel="B" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <span class="gap"></span>  
+                    <input type="number" class="form-control" min="0" max="255" value="224" data-pixel-id="21" data-chanel="R" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="49" data-pixel-id="21" data-chanel="G" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="49" data-pixel-id="21" data-chanel="B" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <span class="gap"></span>  
+                    <input type="number" class="form-control" min="0" max="255" value="224" data-pixel-id="22" data-chanel="R" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="49" data-pixel-id="22" data-chanel="G" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                    <input type="number" class="form-control" min="0" max="255" value="49" data-pixel-id="22" data-chanel="B" onkeyup=enforceMinMax(this) onkeyup=enforceMinMax(this) onchange="changeColor(this)">
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-3 mt-md-0">
+                <div class="grid-container">
+                    <div class="square" id="10" style="background-color: #2f9e44;"></div>
+                    <div class="square" id="11" style="background-color: #2f9e44;"></div>
+                    <div class="square" id="12" style="background-color: #1971c2;"></div>
+                    <div class="square" id="20" style="background-color: #e03131;"></div>
+                    <div class="square" id="21" style="background-color: #e03131;"></div>
+                    <div class="square" id="22" style="background-color: #e03131;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <p class="text-muted">Канал: <a href="t.me/exceptionEx" class="link-secondary">Exception Ex | Программирование и IT</a></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
 </html>
